@@ -1,0 +1,66 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #body{
+       background: #fff;
+       display: flex;
+       justify-content: center;
+     
+       transition: background-color 0.5s ease;
+    }
+
+    #panal{
+     display: flex;
+     justify-content: space-evenly;
+     padding: 10px; 
+     margin-left: 40px;
+     margin-right: 40px;
+     min-width: 1000px;
+     border-radius: 10px;
+     bottom: 50px;
+    }
+
+    .btn{
+        padding: 5px;
+        border-radius: 10px;
+        border: none;
+    }
+    .btn:hover{
+        transform: scale(1.1);
+    }
+    </style>
+ </head>
+ <body id="body">
+
+    <div style=" background-color: aqua;" id="panal">
+        <button class="btn" style="background-color: red;">Red</button>
+        <button class="btn" style="background-color: yellow;">Yellow</button>
+        <button class="btn" style="background-color: purple;">Purple</button>
+        <button class="btn" style="background-color: #000;">Black</button>
+        <button class="btn" style="background-color: green;">Green</button>
+        <button class="btn" style="background-color: blue;">Blue</button>
+        <button class="btn" style="background-color: #fff;">Default</button>
+    </div>
+ 
+    <script>
+        let body = document.querySelector('#body')
+
+
+     
+
+        let button = document.querySelectorAll('.btn')
+
+       button.forEach(div =>{
+        div.addEventListener('click',()=>{
+            let color = div.style.backgroundColor
+            body.style.backgroundColor = color
+        })
+       })
+
+    </script>
+ </body>
+ </html>
