@@ -32,6 +32,12 @@
     .btn:hover{
         transform: scale(1.1);
     }
+    #ctmBtn{
+        padding: 5px;
+        border-radius: 10px;
+        border: none;
+         background-color: aqua;
+    }
     </style>
  </head>
  <body id="body">
@@ -45,20 +51,29 @@
         <button class="btn" style="background-color: blue;">Blue</button>
         <button class="btn" style="background-color: #fff;">Default</button>
     </div>
+    <div id="ctm">
+        <label for="choosecolor">Choose the Color</label>
+        <input type="color" id="choosecolor">
+        <button id="ctmBtn"> Change</button>
+    </div>
  
     <script>
         let body = document.querySelector('#body')
 
-
-     
-
         let button = document.querySelectorAll('.btn')
+        let color = document.querySelector('#choosecolor')
+        let ctmBtn = document.querySelector('#ctmBtn');
 
        button.forEach(div =>{
         div.addEventListener('click',()=>{
             let color = div.style.backgroundColor
             body.style.backgroundColor = color
         })
+       })
+
+       ctmBtn.addEventListener('click',()=>{
+        let newColor = color.value;
+        body.style.backgroundColor = newColor
        })
 
     </script>
