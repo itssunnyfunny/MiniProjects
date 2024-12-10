@@ -72,18 +72,34 @@ function submitAnswer() {
 
 
 function showResult() {
+
     questionEl.classList.add('hidden');
+
     optionEl.classList.add('hidden');
+
     submitBtn.classList.add('hidden');
+
     resultEl.classList.remove('hidden');
+
     scoreEl.textContent = `Your Score ${score}/${quizData.length}`
 }
 
 function restartQuiz() {
-    console.log('restart quiz is clicked');
+    currentIndex = 0;
+    score = 0;
+
+    resultEl.classList.add('hidden');
+    
+    questionEl.classList.remove('hidden');
+    optionEl.classList.remove('hidden');
+    submitBtn.classList.remove('hidden');
+  
+    loadQuestion()
     
 }
 
 
 submitBtn.addEventListener('click',submitAnswer);
 restartBtn.addEventListener('click',restartQuiz);
+
+loadQuestion()
