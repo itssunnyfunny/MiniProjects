@@ -45,14 +45,38 @@ function loadQuestion() {
 
 function submitAnswer() {
     //select the sleceted radio
+    const selected = optionEl.querySelector("input[name='answer']:checked")
     
+     // if not selected alert
+     if (!selected) {
+        alert('please select a Option');
+        return;
+     }
+
+     // if selected == correct = score++ and currentindex++
+     const answer = selected.value;
+     if (answer === quizData[currentIndex].correct) {
+        score++;
+     }
+     currentIndex++;
+
+     // if currentindex < QuizData.l ? loadaQu : showResoult
+     if (currentIndex < quizData.length) {
+        loadQuestion()
+     } else {
+       showResult() 
+     }
      
      
 }
 
 
 function showResult() {
-    
+    questionEl.classList.add('hidden');
+    optionEl.classList.add('hidden');
+    submitBtn.classList.add('hidden');
+    resultEl.classList.remove('hidden');
+    scoreEl.textContent = `Your Score ${score}/${quizData.length}`
 }
 
 function restartQuiz() {
