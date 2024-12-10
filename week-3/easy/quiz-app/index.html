@@ -53,47 +53,32 @@
        #submit {
         margin-top: 25px;
         cursor: pointer;
-       }
-
-       #submit button{
-        min-width: fit-content;
         padding: 5px;
         border: none;
+        border: none;
+       }
 
+
+       .hidden{
+        display: none;
        }
     </style>
 </head>
 <body>
     <div>
         <div id="card">
-            <h1 id="questions">Questions</h1>
-            <div id="optn-container">
-                <div id="option">
-                    <input type="radio" id="opt">
-                    <label for="opt"> option of the given question</label>
-                </div>
-            
-             <div id="option">
-                <input type="radio" id="opt2">
-                <label for="opt2"> option of the given question</label>
-             </div>
-        
-             <div id="option">
-                <input type="radio" id="opt3">
-                <label for="opt3"> option of the given question</label>
-             </div>
-            
-             <div id="option">
-                <input type="radio" id="opt4">
-                <label for="opt4"> option of the given question</label>
-             </div>
-            </div>
-            <div id="submit"><button type="submit">submit</button></div>
+            <h1 id="questions"></h1>
+            <div id="optn-container"></div>
+         <button type="submit" id="submit">submit</button>
+
+          <div id="result" class="hidden">
+            <h3>Quiz completed</h3>
+            <p id="score"></p>
+            <button id="restart-btn">Restart</button>
+
+          </div>
         </div>
     </div>
-    <script>
-
-
-    </script>
+    <script src="index.js" type="module"> </script>
 </body>
 </html>
