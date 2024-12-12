@@ -4,8 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pokemon card</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #pokemon-form{
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        input, select, button{
+            padding: 5px;
+            margin: 1%0;
+            font-size: 20px;
+        }
+
+
+        #card-container{
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+           gap: 20px;
+           width: 90%;
+        }
+
+        .card{
+            padding: 10px;
+            text-align: center;
+            border-radius: 20px;
+
+        }
+
+        .card img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+    </style>
 </head>
 <body>
-    
+    <form id="pokemon-form">
+        <label >
+            Number of Pockemon:
+            <input type="number" id="nub-pockemon" min="1" value="1" required >
+        </label>
+        <label >
+            Category:
+            <select id="Category" >
+                <option value="fire">fire</option>
+                <option value="water">water</option>
+                <option value="grass">grass</option>
+            </select>
+        </label>
+        <button type="submit" >fetch Pockemon</button>
+    </form>
+    <div id="card-container">
+
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
