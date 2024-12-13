@@ -22,10 +22,12 @@ function CreateForm() {
      const wrapperEl = document.createElement('div');
      wrapperEl.classList.add('input-card');
 
-     const newInput = document.createElement('input')
+     const newInput = document.createElement('input');
 
      newInput.type = inType;
      newInput.id = inLabel;
+
+     const breaker = document.createElement('br');
 
 
      const newLabel = document.createElement('label')
@@ -33,6 +35,7 @@ function CreateForm() {
      newLabel.textContent = inLabel
      
      wrapperEl.appendChild(newLabel);
+     wrapperEl.appendChild(breaker);
      
      wrapperEl.appendChild(newInput);
 
