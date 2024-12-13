@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            justify-content:space-evenly;
+            gap: 20px;
+            max-width: 90%;
+        }
+
+        #form-builder{
+          text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            
+        }
+
+        #form-preview{
+           width: 50%;
+           border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           padding: 25px;
+        }
+    </style>
 </head>
 <body>
     <div id="form-builder">
@@ -18,7 +43,7 @@
 
         <h4>Field label</h4>
         <input type="text" id="input-label">
-
+            <br>
         <button id="submit-btn">Add Field</button>
      </div>
 
