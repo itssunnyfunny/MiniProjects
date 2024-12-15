@@ -15,6 +15,9 @@ function createNewTOdo() {
     const tilteIn = tilte.value;
     const descriptionIn = description.value;
 
+
+    tilte.value = " ";
+    description.value= " " ;
     const todoCard = document.createElement('div');
     todoCard.classList.add('card');
 
@@ -39,6 +42,9 @@ submit.addEventListener('click',createNewTOdo)
 
 addBtn.addEventListener('click',()=>{
     inputField.classList.remove('hidden')
-  
+   
     
 });
+
+
+
