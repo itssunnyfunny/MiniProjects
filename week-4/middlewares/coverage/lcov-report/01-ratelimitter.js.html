@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">92.2% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>54/60</span>
+                <span class='fraction'>71/77</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">92.2% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>54/60</span>
+                <span class='fraction'>71/77</span>
             </div>
         
             
@@ -123,7 +123,34 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -152,15 +179,21 @@
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -168,6 +201,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -181,56 +215,72 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('express');
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">// You have to create a middleware for rate limiting a users request based on their username passed in the header
+&nbsp;
+const express = require('express');
 const app = express();
 &nbsp;
-// This object will hold the count of requests per user
+// Your task is to create a global middleware (app.use) which will
+// rate limit the requests from a user to only 5 request per second
+// If a user sends more than 5 requests in a single second, the server
+// should block them with a 404.
+// User will be sending in their user id in the header as 'user-id'
+// You have been given a numberOfRequestsForUser object to start off with which
+// clears every one second
+&nbsp;
+&nbsp;
+// 
+// i need a middleware in which its done
+// userid sure for doing this 
 let numberOfRequestsForUser = {};
 &nbsp;
-// Store the interval ID so we can clear it in tests
 let resetInterval;
 &nbsp;
-// Middleware to rate limit based on user-id
 app.use((req, res, next) =&gt; {
-  const userId = req.header('user-id');
+    const userId = req.header('user-id');
+     // is userId is not present
+     if (!userId) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return  res.status(400).json({error: "user-id is required"});</span>
+<span class="cstat-no" title="statement not covered" >     }</span>
+     // track of currentsecond
+     const currentSecond = Math.floor(Date.now() / 1000);
+     //if  in nubmerofRFU userid not present 
 &nbsp;
-  if (!userId) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(400).json({ error: 'user-id is required' });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+     if (!numberOfRequestsForUser[userId]) {
+       numberOfRequestsForUser[userId] = {count: 0, lastRequestTime : currentSecond };
+     }
 &nbsp;
-  const currentTime = Math.floor(Date.now() / 1000); // Current second timestamp
+    
 &nbsp;
-  // Initialize user data if not already present
-  if (!numberOfRequestsForUser[userId]) {
-    numberOfRequestsForUser[userId] = { count: 0, lastRequestTime: currentTime };
-  }
+     // userdata 
+     const userData = numberOfRequestsForUser[userId];
+     // if userdata current time === current time 
+           //    count += 1;
+          // else count = 1 and  lastresquest time 
+        if ( currentSecond === userData.lastRequestTime ) {
+          userData.count += 1;
+        }<span class="branch-0 cbranch-no" title="branch not covered" >  else {</span>
+<span class="cstat-no" title="statement not covered" >          userData.count = 1;</span>
+<span class="cstat-no" title="statement not covered" >          userData.lastRequestTime = currentSecond;</span>
+<span class="cstat-no" title="statement not covered" >       }</span>
+      
 &nbsp;
-  const userData = numberOfRequestsForUser[userId];
+        // if userData.count &gt; 5 then res.status(400)
+    
+       if(userData.count &gt; 5){
+         return res.status(404).json({error: "too many requests"});
+       };
 &nbsp;
-  if (currentTime === userData.lastRequestTime) {
-    userData.count += 1;
-  }<span class="branch-0 cbranch-no" title="branch not covered" > else {</span>
-<span class="cstat-no" title="statement not covered" >    userData.count = 1;</span>
-<span class="cstat-no" title="statement not covered" >    userData.lastRequestTime = currentTime;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-&nbsp;
-  // Limit to 5 requests per second
-  if (userData.count &gt; 5) {
-    return res.status(404).json({ error: 'Too many requests' });
-  }
-&nbsp;
-  // Continue to next middleware/route handler
-  next();
+     next();
 });
 &nbsp;
-// Reset the numberOfRequestsForUser every second
-resetInterval = setInterval(() =&gt; {
-  numberOfRequestsForUser = {};
-}, 1000);
 &nbsp;
-// Routes
+ resetInterval = setInterval(() =&gt; {
+    numberOfRequestsForUser = {};
+}, 1000)
+&nbsp;
+&nbsp;
+&nbsp;
 app.get('/user', function(req, res) {
   res.status(200).json({ name: 'john' });
 });
@@ -239,18 +289,16 @@ app.post('/user', function(req, res) {
 <span class="cstat-no" title="statement not covered" >  res.status(200).json({ msg: 'created dummy user' });</span>
 });
 &nbsp;
-// Expose the interval to clear it in tests
 app.resetInterval = resetInterval;
 &nbsp;
-module.exports = app;
-&nbsp;</pre></td></tr></table></pre>
+module.exports = app;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-10T03:31:37.446Z
+                at 2024-12-16T09:30:54.184Z
             </div>
         <script src="prettify.js"></script>
         <script>
