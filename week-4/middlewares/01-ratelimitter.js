@@ -11,35 +11,26 @@ const app = express();
 // You have been given a numberOfRequestsForUser object to start off with which
 // clears every one second
 
-
-// 
-// i need a middleware in which its done
-// userid sure for doing this 
 let numberOfRequestsForUser = {};
 
 let resetInterval;
 
 app.use((req, res, next) => {
     const userId = req.header('user-id');
-     // is userId is not present
+   
      if (!userId) {
       return  res.status(400).json({error: "user-id is required"});
      }
-     // track of currentsecond
+    
      const currentSecond = Math.floor(Date.now() / 1000);
-     //if  in nubmerofRFU userid not present 
+   
 
      if (!numberOfRequestsForUser[userId]) {
        numberOfRequestsForUser[userId] = {count: 0, lastRequestTime : currentSecond };
      }
 
-    
-
-     // userdata 
      const userData = numberOfRequestsForUser[userId];
-     // if userdata current time === current time 
-           //    count += 1;
-          // else count = 1 and  lastresquest time 
+   
         if ( currentSecond === userData.lastRequestTime ) {
           userData.count += 1;
         }  else {
@@ -47,8 +38,6 @@ app.use((req, res, next) => {
           userData.lastRequestTime = currentSecond;
        }
       
-
-        // if userData.count > 5 then res.status(400)
     
        if(userData.count > 5){
          return res.status(404).json({error: "too many requests"});
