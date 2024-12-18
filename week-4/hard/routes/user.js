@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const userMiddleware = require("../middleware/user");
+const {TOdo, User,some} = require('../database/index')
 
 // User Routes
 router.post('/signup', (req, res) => {
