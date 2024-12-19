@@ -1,16 +1,29 @@
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://mongo_test:27017');
+ mongoose.connect('mongodb://localhost:27017/todoApp');
 
 // Define schemas
 
 const UserSchema = new mongoose.Schema({
-    // Schema definition here
+   email:{
+    type: String,
+    required: true,
+    unique: true
+   },
+   password: {
+    type: String,
+    required: true
+   },
+   username: {
+    type: String,
+    required: true
+   }
 });
 
 const TodoSchema = new mongoose.Schema({
-    // Schema definition here
+      title: String,
+      description: String,
 });
 
 const User = mongoose.model('User', UserSchema);
