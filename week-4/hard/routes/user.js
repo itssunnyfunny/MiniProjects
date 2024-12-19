@@ -53,11 +53,39 @@ res.json({
    
 });
 
-router.post('/login', (req, res) => {
-     // Implement user login logic
+router.post('/login', async(req, res) => {
+
+  try {
+    const {email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(401).json({message: "provide all the cradencials"})
+    };
+     
+ 
+    const isUser = await User.findOne({email});
+    if (!isUser) {
+     return res.status(404).json({message: "user doesn't exits in our resistry"})
+ 
+    }
+   
+     const userId = isUser._id
+ 
+    const token = jwt({id:userId}, JWT_PASSWORD);
+ 
+    res.json({message: "user successfully logged in",
+     userId,
+      token
+    });
+
+  } catch (error) {
+     console.error("Error during the user loging", error)
+   return  res.status(500).json({message: "Internal Sever Error"})
+  }
+ 
 });
 
-router.get('/todos', userMiddleware, (req, res) => {
+router.get('/todos', userMiddleware, (req, res) => { 
     // Implement logic for getting todos for a user
 });
 
