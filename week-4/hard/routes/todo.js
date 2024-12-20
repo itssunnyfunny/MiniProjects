@@ -12,7 +12,7 @@ const {Todo} = require('../database/index')
 router.post('/', async(req, res) => {
 
   try {
-    const {title, description} = req.body;
+    const {id,title, description} = req.body;
     
     if (!title || !description) {
         return res.status(401).json({
@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
         })
     };
 
-    const todo =  await Todo.create({title, description});
+    const todo =  await Todo.create({id,title, description});
     res.json({
         message: "todo is created",
         todo
@@ -65,8 +65,26 @@ router.put('/', adminMiddleware, async(req, res) => {
 
 });
 
-router.delete('/', adminMiddleware, (req, res) => {
-    // Implement delete todo logic
+router.delete('/', adminMiddleware, async(req, res) => {
+  try {
+       
+    const deleted = await Todo.deleteMany()
+    if (!deleted) {
+        return res.status(402).json({
+            message : "can't delete the all the Todos"
+        })
+    };
+    res.json({
+        message : "todos are deleted successfully"
+    })
+  } catch (error) {
+      console.error("error during the deletation of all todos")
+      return res.status(500).json({
+        message : "Internal server error"
+      })
+  }
+
+
 });
 
 router.delete('/:id', adminMiddleware, (req, res) => {
