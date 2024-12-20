@@ -87,8 +87,35 @@ router.delete('/', adminMiddleware, async(req, res) => {
 
 });
 
-router.delete('/:id', adminMiddleware, (req, res) => {
-    // Implement delete todo by id logic
+router.delete('/:id', adminMiddleware, async(req, res) => {
+
+    try {
+        const todoId = req.params.id;
+
+        if (!todoId) {
+          return res.status(401).json({
+              message: "Please provide id in the url"
+          })
+        };
+       
+        const deleteById  = await Todo.deleteOne({id: todoId})
+  
+        if (!deleteById) {
+          return res.status(401).json({
+              message : "error during the deletion of todo by Id"
+          })
+        };
+  
+        res.json({
+          message : "todo deleted by given Id"
+        })
+    } catch (error) {
+        console.error("Error durin the deletion todo by Id", error)
+        return res.status(500).json({
+            message: "Internal sever Error"
+        })
+    }
+
 });
 
 
