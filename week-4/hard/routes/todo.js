@@ -33,8 +33,36 @@ router.post('/', async(req, res) => {
   }
 });
 
-router.put('/', adminMiddleware, (req, res) => {
-    // Implement update todo  logic
+router.put('/', adminMiddleware, async(req, res) => {
+   try {
+     
+    const updatedData  = req.body;
+
+    if (!updatedData) {
+        return res.status(401).json({
+            message: "provide the upated data"
+        })
+    }
+
+    const update = await Todo.updateOne({updatedData});
+
+    if (!update) {
+        return res.status(404).json({
+            message: "Error during the upadation of data"
+        })
+    }
+
+    res.json({
+        message: "todo is updated successfully",
+        update
+    })
+   } catch (error) {
+     console.error("error during updating the Todo",error)
+     return res.status(500).json({
+        message: "Internal server Error"
+     })
+   }
+
 });
 
 router.delete('/', adminMiddleware, (req, res) => {
