@@ -143,8 +143,33 @@ router.get('/', adminMiddleware, async(req, res) => {
 
 });
 
-router.get('/:id', adminMiddleware, (req, res) => {
-    // Implement fetching todo by id logic
+router.get('/:id', adminMiddleware, async(req, res) => {
+    try {
+        const todoId = req.params.id;
+
+        if (!todoId) {
+           return res.status(401).json({
+               message: "please provide the todo id"
+           })
+        };
+   
+        const todoById  = await Todo.findById({id: todoId});
+   
+        if (!todoById) {
+           return res.status(401).json({
+               message : " error during getting the todo by Id"
+           })
+        };
+   
+        res.json({
+           todoById
+        })
+    } catch (error) {
+        console.error("error during the getting todo by id", error);
+        return res.status(500).json({
+            message : "Internal server Error during the getting the todo by given Id"
+        })
+    }
 });
 
 module.exports = router;
