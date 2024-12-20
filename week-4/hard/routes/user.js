@@ -107,6 +107,26 @@ router.get('/todos', userMiddleware, async(req, res) => {
 
 router.post('/logout', userMiddleware, async(req, res) => {
 
+  try {
+    const userId = req.id;
+    if (!userId) {
+      return res.status(401).json({
+        message: "userId is not Provided"
+      })
+    }
+  const user = await User.findByIdAndDelete(userId);
+
+  res.json({
+    message : "user successfully deleted"
+  })
+  } catch (error) {
+     console.error("Error in deleting user by Id",error)
+     return res.status(500).json({
+      message: "Internal server error during deleting the user"
+     })
+  }
+
+
 });
 
 module.exports = router
