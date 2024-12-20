@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const userMiddleware = require("../middleware/user");
-const {TOdo, User} = require('../database/index');
+const {Todo, User} = require('../database/index');
 const jwt = require('jsonwebtoken')
 const dotenv = require("dotenv");
 dotenv.config();
@@ -85,12 +85,28 @@ router.post('/login', async(req, res) => {
  
 });
 
-router.get('/todos', userMiddleware, (req, res) => { 
-    // Implement logic for getting todos for a user
+router.get('/todos', userMiddleware, async(req, res) => { 
+
+    const userId = req.id;
+    if (!userId) {
+      return res.status(401).json({
+        message: "userId is not Provided"
+      })
+    }
+
+    const todos = await Todo.find({userId});
+    if (!todos) {
+      return res.status(404).json({
+        message: "todos are not found for the given userId"
+      })
+    }
+
+    res.json(todos)
+     
 });
 
-router.post('/logout', userMiddleware, (req, res) => {
-    // Implement logout logic
+router.post('/logout', userMiddleware, async(req, res) => {
+
 });
 
 module.exports = router

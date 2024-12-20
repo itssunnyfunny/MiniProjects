@@ -22,6 +22,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 const TodoSchema = new mongoose.Schema({
+      userId : String,
       title: String,
       description: String,
 });
