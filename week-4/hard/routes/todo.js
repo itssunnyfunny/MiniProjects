@@ -119,8 +119,28 @@ router.delete('/:id', adminMiddleware, async(req, res) => {
 });
 
 
-router.get('/', adminMiddleware, (req, res) => {
-    // Implement fetching all todo logic
+router.get('/', adminMiddleware, async(req, res) => {
+   try {
+      
+    const todos = await Todo.find();
+     if (!todos) {
+        return res.status(404).json({
+            message: "error during the getting all the todos"
+        })
+     };
+
+     res.json({
+        message: "gitting all the todos",
+        todos
+     })
+
+   } catch (error) {
+      console.error("error during getting all the todos ", error)
+      return res.status (500).json({
+        message : "Internal server Error"
+      })
+   }
+
 });
 
 router.get('/:id', adminMiddleware, (req, res) => {
