@@ -1,10 +1,12 @@
 const {Router} = require('express');
+const {Todo} = require('../db');
 
 
 const router = Router();
 
 
 router.post('/',async (req, res) => {
+    const payload = req.body;
     
 });
 
