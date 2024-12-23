@@ -53,7 +53,28 @@ router.get('/',async (req, res) => {
 
 
 router.put('/:id',async (req, res) => {
-    
+    const { id } = req.params;
+    const updatePayload = req.body;
+
+    if(typeof updatePayload.completed === 'undefined') {
+        return res.status(400).json({
+            message : "You must povide a completed status"
+        })
+    };
+
+    try {
+        const result = Todo.updateOne({_id: id},
+             {completed: updatePayload.completed}
+            );
+            res.json({
+                message : "Todo marked as completed"
+            })
+    } catch (error) {
+        res.status(500).json({
+            message: "Error updating todo. ",
+            error : error.message
+        });
+    }
 })
 
 module.exports = router
