@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {Todo} = require('../db');
+const { Todo } = require('../db');
 const middlewareJwt = require('../middleware/user')
 
 
@@ -36,6 +36,18 @@ router.post('/',async (req, res) => {
 });
 
 router.get('/',async (req, res) => {
+    try {
+        const todos = await Todo.find({userId: req.userId})
+
+        res.json({
+            todos: todos
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Error fetching todos",
+            error: error.message,
+        })
+    }
     
 })
 
