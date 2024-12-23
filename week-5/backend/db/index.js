@@ -24,7 +24,8 @@ require('dotenv').config()
  const TodoSchema = new Schema({
     userId : ObjectId,
     title: String,
-    description: String
+    description: String,
+    completed: String
  })
 
  const User  = mongoose.model('User',UserSchema);
