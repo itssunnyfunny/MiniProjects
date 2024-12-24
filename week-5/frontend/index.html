@@ -7,7 +7,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- start writing code -->
+ <div id="signup-container">
+   <form id="signup-form">
+      <label for="signup-username">Username:</label>
+      <input type="text" id="signup-username">
+      <label for="signup-password">password:</label>
+      <input type="text" id="signup-password">
+       <button type="submit">Signup</button>
+    </form>
+    <p>
+        Already have an account? <a href="#" id="show-signin">Sign In</a>
+    </p>
+  </div>
+
+    <div id="signin-container">
+     <form id="signin-form">
+        <label for="signin-username">Username:</label>
+        <input type="text" id="signin-username">
+        <label for="signin-password">password</label>
+        <input type="text" id="signin-password">
+        <button type="submit">Signin</button>
+     </form>
+     <p>
+        Don't have an account? <a href="#" id="show-signup">Sign Up</a>
+     </p>
+    </div>
+
+    <div>
+
+    </div>
     <script src="./script.js"></script>    
 </body>
 </html>
