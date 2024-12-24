@@ -1,1 +1,75 @@
-  /* start from here */
+body{
+  margin: 0;
+  padding: 0;
+
+  color: #8A2BE2;
+  min-height: 100vh;
+  display:  flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  background: #ffffff1a;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px  rgba(0, 0, 0,0.1);
+}
+
+h2{
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+input[type="text"],
+input[type="password"],
+#todo-input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+button{
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #8A2BE2;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover{
+  background-color: #935dc6;
+}
+
+#response-message{
+  margin-top: 25px;
+  text-align: center;
+  color: #FFD700;
+}
+
+a {
+  color: #FFD700;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: #f0cd03;
+}

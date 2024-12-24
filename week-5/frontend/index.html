@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
  <div id="signup-container">
    <form id="signup-form">
       <label for="signup-username">Username:</label>
@@ -20,7 +21,7 @@
     </p>
   </div>
 
-    <div id="signin-container">
+    <div id="signin-container" style="display: none;">
      <form id="signin-form">
         <label for="signin-username">Username:</label>
         <input type="text" id="signin-username">
@@ -33,7 +34,7 @@
      </p>
     </div>
 
-    <div id="todo-container">
+    <div id="todo-container" style="display: none;">
         <form id="todo-form">
             <input type="text" id="todo-input" placeholder="Add new todo" required>
             <button type="submit">Add Todo</button>
@@ -41,6 +42,7 @@
          <ul id="todo-list"></ul>
     </div>
     <p id="response-message"></p>
+</div>
     <script src="./script.js"></script>    
 </body>
 </html>
