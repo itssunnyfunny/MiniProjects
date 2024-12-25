@@ -65,7 +65,34 @@
    document.getElementById('response-message').innerText = ' '
  })
 // Todo on form submission
+ document.getElementById('todo-form').addEventListener('submit',async (e) => {
+   e.preventDefault();
+   const token = localStorage.getItem('token')
+   const todoInput = document.getElementById('todo-input');
+   const todoText = todoInput.value.trim();
 
+   try {
+      const response = await fetch('http://localhost:3000/todo',{
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+         },
+         body : JSON.stringify({title: todoText})
+      });
+      const result = await response.json();
+      if (response.ok) {
+         todoInput.value = '';
+         loadTodos()
+      }else {
+        console.error(result.message);
+      }
+   } catch (error) {
+      console.error('Error during todo: ',error)
+   }
+  
+
+ })
 // Load Todos
 
 // Complete Todo
