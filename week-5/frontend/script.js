@@ -1,6 +1,11 @@
+let isSigningUp = false;
+let isAddingTodo = false
+
 //signup form handling
  document.getElementById('signup-form').addEventListener('submit',async(e)=>{
     e.preventDefault()
+    if (isSigningUp) return;
+    isSigningUp = true;
    const username=  document.getElementById('signup-username').value;
    const password = document.getElementById('signup-password').value;
   try {
@@ -67,6 +72,8 @@
 // Todo on form submission
  document.getElementById('todo-form').addEventListener('submit',async (e) => {
    e.preventDefault();
+   if (isAddingTodo) return;
+   isAddingTodo = true;
    const token = localStorage.getItem('token')
    const todoInput = document.getElementById('todo-input');
    const todoText = todoInput.value.trim();
