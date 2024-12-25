@@ -94,5 +94,44 @@
 
  })
 // Load Todos
+async function loadTodos() {
+   const token = localStorage.getItem('token');
+   try {
+      const response = await fetch('http://localhost:3000/todo',{
+         headers: {
+            'Authorization': `Bearer ${token}`
+         }
+      });
+
+      const {todos} = await response.json();
+      const todoList = document.getElementById('todo-list');
+      todoList.innerHTML = '';
+
+      todos.forEach(todo => {
+         const li = document.createElement('li');
+         li.textContent = todo.title;
+
+         
+      if (todo.completed) {
+         li.style.textDecoration = 'line-through';
+      }
+
+      const completeButton = document.createElement('button')
+      completeButton.textContent = 'Complete';
+      completeButton.onclick =  () => {
+         completeTodo(todo._id, !todo.completed)
+      };
+
+      if (!todo.completed) {
+         li.appendChild(completeButton)
+      }
+
+      todoList.appendChild(li)
+      });
+
+   } catch (error) {
+      console.error('error loading todos: ',error)
+   }
+}
 
 // Complete Todo
