@@ -54,6 +54,15 @@
  } catch (error) {
    document.getElementById('response-message').innerText = 'Error during signIn'
  }
+ });
+
+ document.getElementById('logout-link').addEventListener('click',(e)=>{
+   e.preventDefault();
+   localStorage.removeItem('token');
+   document.getElementById('todo-container').style.display = "none";
+   document.getElementById('signin-container').style.display = 
+   "block";
+   document.getElementById('response-message').innerText = ' '
  })
 // Todo on form submission
 
