@@ -156,3 +156,17 @@ async function completeTodo(id, completed){
    console.error('Error completing todo: ',error)
  }
 }
+
+// Toggle between signup and signin
+document.getElementById('show-signin').addEventListener('click',(e)=>{
+   e.preventDefault();
+   document.getElementById('signup-container').style.display = 'none';
+   document.getElementById('signin-container').style.display = 'block';
+});
+
+document.getElementById('show-signup').addEventListener('click',(e)=>{
+   e.preventDefault()
+   document.getElementById('signin-container').style.display = 'none';
+     document.getElementById('signup-container').style.display = 'block';
+  
+})
