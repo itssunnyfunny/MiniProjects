@@ -135,3 +135,24 @@ async function loadTodos() {
 }
 
 // Complete Todo
+
+async function completeTodo(id, completed){
+ const token = localStorage.getItem('token');
+
+ try {
+   const response = await fetch(`http://localhost:3000/todo/${id}`,{
+      method: 'PUT',
+      headers: {
+         'Content-Type' : 'application/json',
+         'Authorization': `Bearer ${token}`
+      }
+   });
+
+   if (response.ok) {
+      loadTodos()
+   };
+
+ } catch (error) {
+   console.error('Error completing todo: ',error)
+ }
+}
