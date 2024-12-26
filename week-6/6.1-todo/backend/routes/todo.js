@@ -1,5 +1,5 @@
 let todos = []; 
-let currentIndex;
+let currentIndex = 1;
 
 export async function getAllTodo (req, res, next){
      res.json(todos);
@@ -53,6 +53,9 @@ export async function deleteTodoById (req, res, next){
 
 export async function searchTodo(req , res, next) {
     const q = req.query;
+    if (!q) {
+        return res.status(404).json({message: "Query parapmeter missing"})
+    }
 
     const filteredTodos = todos.filter(todo => todo.task.toLowerCase().include(q.toLowerCase()));
     res.json(filteredTodos);
