@@ -32,6 +32,11 @@ export async function updateTodo (req, res, next){
 }
 
 export async function deleteTodo (req, res, next){
+    todos = [];
+    res.json({message : "all todo deleted !"})
+}
+
+export async function deleteTodoById (req, res, next){
     const {id} = req.params;
     if (!id) {
         return res.status(401).json({message: "provide id for deletion"})
@@ -44,10 +49,4 @@ export async function deleteTodo (req, res, next){
     } else {
         res.status(404).json({message : "todo not found"})
     }
-
-
-}
-
-export async function deleteTodoById (req, res, next){
-    //  write here
 }
