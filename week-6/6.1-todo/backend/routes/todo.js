@@ -6,7 +6,13 @@ export async function getAllTodo (req, res, next){
 }
 
 export async function createTodo (req, res, next){
-    
+    const task = req.body;
+    if (!task) {
+        return res.status(401).json({message: "provide task "})
+    }
+    const newTodo = {id:currentIndex++, task};
+    todos.push(newTodo);
+    res.json(newTodo);
 }
 
 export async function updateTodo (req, res, next){
