@@ -49,4 +49,11 @@ export async function deleteTodoById (req, res, next){
     } else {
         res.status(404).json({message : "todo not found"})
     }
+};
+
+export async function searchTodo(req , res, next) {
+    const q = req.query;
+
+    const filteredTodos = todos.filter(todo => todo.task.toLowerCase().include(q.toLowerCase()));
+    res.json(filteredTodos);
 }
