@@ -1,11 +1,12 @@
-let todos = []; // in memory space
+let todos = []; 
+let currentIndex;
 
 export async function getAllTodo (req, res, next){
-    //  write here
+     res.json(todos);
 }
 
 export async function createTodo (req, res, next){
-    //  write here
+    
 }
 
 export async function updateTodo (req, res, next){
