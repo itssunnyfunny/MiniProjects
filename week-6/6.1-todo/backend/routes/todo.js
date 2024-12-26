@@ -16,11 +16,36 @@ export async function createTodo (req, res, next){
 }
 
 export async function updateTodo (req, res, next){
-    //  write here
+    const {id} = req.params;
+    const task = req.body;
+    if (!task) {
+        return  res.json({message: "please provide task"});
+    }
+
+    const todoIndex = todos.findIndex(todo => todo.id === id)
+    if (todoIndex !== -1) {
+        todos[todoIndex] = {...todos[todoIndex], task};
+       res.json(todos[todoIndex]);
+    } else {
+        res.json({message: "todo is not found"});
+    }
 }
 
 export async function deleteTodo (req, res, next){
-    //  write here
+    const {id} = req.params;
+    if (!id) {
+        return res.status(401).json({message: "provide id for deletion"})
+    };
+    const todoIndex = todos.findIndex(todo => todo.id == id);
+
+    if (todoIndex !== -1) {
+        todos.splice(todoIndex,1);
+        res.json({message : "tod is deleted"})
+    } else {
+        res.status(404).json({message : "todo not found"})
+    }
+
+
 }
 
 export async function deleteTodoById (req, res, next){
