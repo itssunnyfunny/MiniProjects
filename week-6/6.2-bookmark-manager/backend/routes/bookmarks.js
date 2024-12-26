@@ -34,5 +34,5 @@ export async function deleteBookmark(req,res,next){
 }
 
 export async function getAllBookmarks(req,res,next){
-// write here
+    res.json(bookmarks);
 }
