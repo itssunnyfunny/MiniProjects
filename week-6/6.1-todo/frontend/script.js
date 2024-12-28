@@ -69,5 +69,12 @@ function toggleTodo(id, completed) {
 
 // Delete a todo
 function deleteTodo(id) {
-    // write here  
+    fetch(`${API_URL}/${id}`,{
+        method: 'DELETE',
+    })
+    .then(()=>{ 
+        const todoItem =  document.querySelector(`[todo-id = ${id}]`)
+        todoItem.remove()
+    })
+    .catch(error => console.error('Error durion deleting',error))
 }
