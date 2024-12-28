@@ -38,7 +38,28 @@ function addTodoToDOM(todo) {
 
 // Add a new todo
 document.getElementById('add-todo-btn').addEventListener('click', () => {
-    //  write here
+    const titleInput = document.getElementById('todo-input');
+
+    if (!titleInput) {
+        console.error("Input not found");
+        return;
+    }
+
+    const newTodo = {task : titleInput.value};
+
+    fetch(API_URL,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newTodo)
+    })
+    .then((todo)=> todo.json())
+    .then((todo)=>
+         {addTodoToDOM(todo)
+            titleInput.value = '';
+         })
+         .catch(error => console.error("Error adding new todo ",error))
 });
 
 // Toggle todo completion
