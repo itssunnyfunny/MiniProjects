@@ -73,7 +73,7 @@ function deleteTodo(id) {
         method: 'DELETE',
     })
     .then(()=>{ 
-        const todoItem =  document.querySelector(`[todo-id = ${id}]`)
+        const todoItem =  document.querySelector(`[todo-id = '${id}']`)
         todoItem.remove()
     })
     .catch(error => console.error('Error durion deleting',error))
