@@ -66,5 +66,12 @@ document.getElementById('add-bookmark-btn').addEventListener('click', () => {
 
 // Delete a bookmark
 function deleteBookmark(id) {
-     //  start here;
+    fetch(`${API_URL}/${id}`,{
+        method: 'DELETE'
+    })
+    .then(()=>{
+        const bookmarkItem = document.querySelector(`[bookmark-id='${id}']`)
+        bookmarkItem.remove();
+    })
+    .catch(error => console.error("error during deleting a bookmark"))
 }
