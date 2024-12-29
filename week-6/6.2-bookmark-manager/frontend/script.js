@@ -17,7 +17,23 @@ function fetchBookmarks() {
 
 // Add a bookmark to the DOM
 function addBookmarkToDOM(bookmark) {
-    //  start here
+    const bookmarkList = document.getElementById('bookmark-list');
+
+    const bookmarkItem = document.createElement('li');
+    bookmarkItem.setAttribute('bookmark-id', bookmark.id);
+    bookmarkItem.classList.add('bookmark-item');
+
+    const url = document.createElement('span');
+    url.textContent = `${bookmark.url} (${bookmark.catogary})`;
+
+    const deleteBookmark = document.createElement('button');
+    deleteBookmark.textContent = 'Delete';
+    deleteBookmark.addEventListener('click', ()=> deleteBookmark(bookmark.id));
+
+    bookmarkItem.appendChild(url);
+    bookmarkItem.appendChild(deleteBookmark);
+
+    bookmarkList.appendChild(bookmarkItem);
 }
 
 // Add a new bookmark
