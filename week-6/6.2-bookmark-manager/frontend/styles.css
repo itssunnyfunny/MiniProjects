@@ -1,18 +1,75 @@
 body {
-  /*start here  */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  min-height: 100vh;
  }
    
  .container {
-  /*start here  */
+   padding: 30px;
+   border-radius: 16px;
+   background: rgba(255, 255, 255, 0.05);
+   width: 100%;
+   max-width: 400px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
  }
    
  h1 {
-    /*start here  */
+   text-align: center;
+   font-size: 26px;
+   color: rgb(178, 83, 205);
+ }
+
+
+
+ .input-container{
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   margin-bottom: 20px;
+ }
+
+ #bookmark-inputs{
+    display: flex;
+    gap: 10px;
+ }
+
+ #bookmark-inputs input{
+  border: none;
+  border-radius: 12px;
+  padding: 10px ;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+
+ }
+
+ #bookmark-inputs input::placeholder{
+  color: #a0a0a0;
  }
     
  button {
-   /*start here  */
+   border: none;
+   border-radius: 16px;
+   padding: 12px;
+   font-size: 18px;
+   background-color: #5a189a;
+   color: #e0e0e0;
+   cursor: pointer;
+   transition: background-color 0.4s;
  }
+
+ button:hover {
+   background-color: #602998;
+ }
+
+
    
  #bookmark-list {
   /*start here  */
