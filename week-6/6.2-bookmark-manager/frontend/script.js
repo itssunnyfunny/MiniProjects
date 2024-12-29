@@ -12,7 +12,7 @@ function fetchBookmarks() {
     .then(bookmarks => bookmarks.forEach(bookmark => {
         addBookmarkToDOM(bookmark)
     }))
-    .catch(error => console.error("error during getting all the bookmarks"))
+    .catch(error => console.error("error during getting all the bookmarks",error))
 }
 
 // Add a bookmark to the DOM
@@ -73,5 +73,5 @@ function deleteBookmark(id) {
         const bookmarkItem = document.querySelector(`[bookmark-id='${id}']`)
         bookmarkItem.remove();
     })
-    .catch(error => console.error("error during deleting a bookmark"))
+    .catch(error => console.error("error during deleting a bookmark",error))
 }
