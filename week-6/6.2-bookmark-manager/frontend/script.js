@@ -24,7 +24,7 @@ function addBookmarkToDOM(bookmark) {
     bookmarkItem.classList.add('bookmark-item');
 
     const url = document.createElement('span');
-    url.textContent = `${bookmark.url} (${bookmark.catogary})`;
+    url.textContent = `${bookmark.url} (${bookmark.category})`;
 
     const deleteBookmark = document.createElement('button');
     deleteBookmark.textContent = 'Delete';
@@ -38,7 +38,30 @@ function addBookmarkToDOM(bookmark) {
 
 // Add a new bookmark
 document.getElementById('add-bookmark-btn').addEventListener('click', () => {
-      //  start here
+      const urlInput = document.getElementById('bookmark-url');
+      const categoryInput = document.getElementById('bookmark-category');
+
+      if (!urlInput || !categoryInput ||urlInput.value.trim() === '' || categoryInput.value.trim() === '') {
+        console.error('provide both url and category')
+        return;
+      };
+
+      const newBookmark = {url: urlInput.value, category: categoryInput.value};
+
+      fetch(API_URL, {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newBookmark)
+      })
+      .then(response => response.json())
+      .then(bookmark => {
+        addBookmarkToDOM(bookmark)
+        urlInput.value = '';
+        categoryInput.value = '';
+    })
+      .catch(error => console.error("Error during adding new bookmark",error))
 });
 
 // Delete a bookmark
