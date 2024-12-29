@@ -2,12 +2,17 @@ const API_URL = 'http://localhost:3001/bookmarks';
 
 // Fetch bookmarks when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-//   start here
+  fetchBookmarks()
 });
 
 // Fetch bookmarks from the backend
 function fetchBookmarks() {
-    //  start here
+    fetch(`${API_URL}`)
+    .then(response => response.json())
+    .then(bookmarks => bookmarks.forEach(bookmark => {
+        addBookmarkToDOM(bookmark)
+    }))
+    .catch(error => console.error("error during getting all the bookmarks"))
 }
 
 // Add a bookmark to the DOM
