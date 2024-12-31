@@ -132,8 +132,41 @@ app.get('/admin/courses', (req, res) => {
 });
 
 // User routes
-app.post('/users/signup', (req, res) => {
-    // logic to sign up user
+app.post('/users/signup', async(req, res) => {
+    try {
+        const {username, password} = req.body;
+
+        if (!username || !password) {
+            res.status(401).json({
+                message: "please provide both username and password"
+            })
+            return;
+        }
+    
+        const isUser = await User.findOne({username});
+    
+        if (isUser) {
+            res.status(401).json({
+                message: "user exists with the provided username"
+            })
+            return;
+        }
+    
+        const user = await User.create({username: username, password: password});
+    
+        const token = jwt.sign({id: user._id}, secret, {expiresIn: '1h'});
+    
+        res.json({
+            message: "user is created successfully",
+            token: `Bearer ${token}`
+        })
+    } catch (error) {
+        console.error("error during user signup",error)
+        res.status(500).json({
+            message: "Internal Server Error"
+        })
+        return;
+    }
 });
 
 app.post('/users/login', (req, res) => {
