@@ -169,8 +169,39 @@ app.post('/users/signup', async(req, res) => {
     }
 });
 
-app.post('/users/login', (req, res) => {
-    // logic to log in user
+app.post('/users/login', async(req, res) => {
+     try {
+        const {username, password} = req.body;
+
+        if (!username || !password) {
+            res.status(403).json({
+                message: "please provide full credincials username, password"
+            })
+            return;
+        };
+
+        const isExists = await User.findOne({username: username, password: password});
+
+        if (!isExists) {
+            res.status(404).json({
+                message: "user don't exists or wrong password"
+            })
+            return;
+        }
+
+        const token = jwt.sign({id: isExists._id},secret, {expiresIn: '1h'});
+
+        res.json({
+            message: "user is successfully logged in",
+            token: `Bearer ${token}`
+        })
+     } catch (error) {
+         console.error("error during user signin",error)
+         res.status(500).json({
+            message: "Internal Server Error"
+         })
+         return;
+     }
 });
 
 app.get('/users/courses', (req, res) => {
