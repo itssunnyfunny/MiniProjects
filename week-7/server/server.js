@@ -83,8 +83,40 @@ app.post('/admin/signup', async(req, res) => {
    }
 });
 
-app.post('/admin/login', (req, res) => {
-    // logic to log in admin
+app.post('/admin/login', async(req, res) => {
+      try {
+        
+     const {username, password} = req.body;
+
+     if (!username || !password) {
+        res.status(401).json({
+            message: "please provide full cradencials username and password"
+        });
+        return;
+     }
+
+     const isExists = await Admin.findOne({username: username, password: password});
+
+     if (!isExists) {
+        res.status(404).json({
+            message: "Admin not found or wrong password"
+        });
+        return;
+     }
+      const token = jwt.sign({id: isExists._id},secret, {expiresIn: '1h'});
+
+      res.json({
+        message: "Admin successfully loggedIn",
+        token: `Bearer ${token}`
+      });
+      } catch (error) {
+        console.error("Error during the Admin Logging",error)
+        res.status(500).json({
+            message: "Internal Server Error"
+        })
+        return;
+      }
+
 });
 
 app.post('/admin/courses', (req, res) => {
