@@ -46,8 +46,41 @@ mongoose.connect('<YourMongoDbConnectionString>');
 
 
 // Admin routes
-app.post('/admin/signup', (req, res) => {
-    // logic to sign up admin
+app.post('/admin/signup', async(req, res) => {
+
+   try {
+    const {username, password} = req.body;
+    if (!username || !password) {
+        res.status(401).json({
+            message: "please provide both username and password"
+        })
+        return;
+    }
+
+    const isExists = await Admin.findOne({username});
+
+    if (isExists) {
+        res.status(403).json({
+            message: "Admin exist with this email"
+        })
+        return;
+    }
+
+    const newAdmin = await Admin.create({username: username, password: password});
+
+    const token = jwt.sign({id: newAdmin._id},secret,{expiresIn: '1h'});
+
+    res.json({
+        message: "Admin created successfully",
+        token : `Bearer ${token}`
+    })
+   } catch (error) {
+      console.error("Error during the Admin signUP",error)
+      res.status(500).json({
+        message: "Internal Server Error"
+      })
+      return;
+   }
 });
 
 app.post('/admin/login', (req, res) => {
