@@ -25,10 +25,12 @@ const adminSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
+    courseId: Number,
    title: String,
    description: String,
    price: Number,
    imageLink: String,
+   competed: Boolean,
    createdBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Admin'}
 });
 
