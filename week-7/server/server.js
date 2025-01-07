@@ -155,8 +155,43 @@ app.post('/admin/courses', async(req, res) => {
 
 });
 
-app.put('/admin/courses/:courseId', (req, res) => {
-    // logic to edit a course
+app.put('/admin/courses/:courseId', async(req, res) => {
+    const courseId = req.params;
+    const payload   = req.body;
+
+   if (!courseId) {
+        res.status(404).json({
+            message: "please provide courseId as a param"
+        })
+        return;
+    }
+
+    if(!payload){
+        res.status(404).json({
+            message: "please provide updated payload"
+        })
+        return;
+    }
+  try {
+     
+    const updatedCourse = await Course.updateOne({courseId:courseId},{payload},{new: true})
+    
+    if (!updatedCourse) {
+        res.status(400).json({
+            message: "course not updated"
+        })
+    }
+    res.json({
+        message: "Course updated successfully"
+    })
+  } catch (error) {
+    res.status(500).json({
+        message: "Internal server Error",
+
+    });
+    console.error("Error during updating course",error)
+    return;
+  }
 });
 
 app.get('/admin/courses', (req, res) => {
