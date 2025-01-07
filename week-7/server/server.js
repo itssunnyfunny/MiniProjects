@@ -194,8 +194,27 @@ app.put('/admin/courses/:courseId', async(req, res) => {
   }
 });
 
-app.get('/admin/courses', (req, res) => {
-    // logic to get all courses
+app.get('/admin/courses', async(req, res) => {
+
+   try {
+    const courses  = await Course.find();
+
+    if (!courses) {
+        res.json(404).json({
+            message: "courses are not available"
+        })
+    }
+
+    res.json({
+        courses
+    })
+   } catch (error) {
+     res.status(500).json({
+        message: "Internal Server Error"
+     })
+     console.error("Error when getting courses at admin route",error)
+   }
+
 });
 
 // User routes
