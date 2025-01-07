@@ -312,8 +312,41 @@ app.get('/users/courses', async(req, res) => {
      }
 });
 
-app.post('/users/courses/:courseId', (req, res) => {
-    // logic to purchase a course
+app.post('/users/courses/:courseId', async(req, res) => {
+     const userId = req.id;
+
+     const courseId = req.params.courseId;
+     if (!courseId) {
+        res.status(404).json({
+            message: "please provide courseId"
+        })
+        return;
+     }
+    try {
+        const course = await Course.findOne({courseId})
+        if (!course) {
+           res.status(404).json({
+               message: "course not found"
+           });
+          return;
+        }
+   
+        const user = await User.findByIdAndUpdate(userId,
+           {$addToSet:{purchasedCourses: courseId}},
+            {new: true}
+        )
+   
+        res.json({
+           message: "Course purchased successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "internal server error"
+        })
+
+        console.error("Error during purchasing course")
+        return;
+    }
 });
 
 app.get('/users/purchasedCourses', (req, res) => {
