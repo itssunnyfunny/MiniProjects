@@ -121,8 +121,38 @@ app.post('/admin/login', async(req, res) => {
 
 });
 
-app.post('/admin/courses', (req, res) => {
-    // logic to create a course
+app.post('/admin/courses', async(req, res) => {
+   try {
+    let courseId =1;
+    const {title, description, price, imageLink, published} = req.body;
+    if (!title || !description || !price || !imageLink || !published) {
+        res.status(401).json({
+            message: "please provide all the credentials"
+        })
+    };
+
+    const course = await Course.create({
+        courseId,
+        title,
+        description,
+        price,
+        imageLink,
+        published
+    });
+    
+    courseId++;
+    res.json({
+        message: "Course created successfully",
+        courseId: course.courseId
+    })
+   } catch (error) {
+      res.status(500).json({
+        message : "Internal server error"
+      });
+      console.error("Error during creating a new course",error)
+      return;
+   }
+
 });
 
 app.put('/admin/courses/:courseId', (req, res) => {
