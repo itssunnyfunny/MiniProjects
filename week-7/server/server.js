@@ -290,8 +290,26 @@ app.post('/users/login', async(req, res) => {
      }
 });
 
-app.get('/users/courses', (req, res) => {
-    // logic to list all courses
+app.get('/users/courses', async(req, res) => {
+     try {
+        const courses = await Course.find()
+        if (!courses) {
+            res.status(404).json({
+                message: "courses not found"
+            })
+            return;
+        }
+
+        res.json({
+            courses
+        })
+     } catch (error) {
+        res.status(500).json({
+            message: "internal Server error"
+        })
+        console.error("error during the course by user route")
+        return;
+     }
 });
 
 app.post('/users/courses/:courseId', (req, res) => {
