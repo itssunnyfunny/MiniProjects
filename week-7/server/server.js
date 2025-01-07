@@ -349,8 +349,46 @@ app.post('/users/courses/:courseId', async(req, res) => {
     }
 });
 
-app.get('/users/purchasedCourses', (req, res) => {
-    // logic to view purchased courses
+app.get('/users/purchasedCourses', async(req, res) => {
+    const userId = req.id;
+
+    if(!userId) {
+        res.json({
+            message: "userid not found"
+        })
+        return;
+    }
+try {
+    
+    const user = await User.findById(userId).populate('purchasedCourses');
+
+    if (!user) {
+        res.status(404).json({
+            message: "user not found"
+        })
+        return;
+    }
+
+    if (!user.purchasedCourses || user.purchasedCourses.length === 0) {
+        res.status(404).json({
+            message: "user do not purchased any courses",
+            purchasedCourses: []
+        })
+        return;
+    }
+
+    res.json({
+        message: "get all purchased courses successfully",
+        purchasedCourses: user.purchasedCourses
+    })
+
+} catch (error) {
+    res.status(500).json({
+        message: "Internal server error"
+    })
+    console.error("Error during getting all the purchased courses")
+    return;
+}
 });
 
 app.listen(port, () => {
