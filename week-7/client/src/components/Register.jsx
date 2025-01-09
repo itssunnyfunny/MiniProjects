@@ -6,11 +6,24 @@ import axios from "axios"
 const Register = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [message, setMessage] = useState("")
+    const [error, setError] = useState("")
     async function handleRegister() {
-        const resposne = await axios.post(); // if you don't know about axios, give it a read https://axios-http.com/docs/intro
+      try {
+        const resposne = await axios.post('http://localhost:3000/users/signup',{username, password});
+
+        const {token , message} = resposne.data;
+        setMessage(message)
+
+        localStorage.setItem('token',token );
+      } catch (error) {
+        setError(error.resposne?.data?.message || 'something went wrong!');
+      }
     }
     return (
         <div>
+            {message && <div>{message}</div>}
+            {error && <div>{error} </div>}
             <div>
                 <form  onSubmit={handleRegister}>
                     <div>
