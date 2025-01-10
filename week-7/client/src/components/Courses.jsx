@@ -7,18 +7,34 @@ const Courses = () => {
   const [courses, setCourses] = useState([]); 
   const [message, setMessage] = useState("")
 
-  async function getCourses() {
-    const response = await axios.get('http://localhost:3000/users/courses')
-    const {course,message} = response.data;
-     setCourses(course);
-     setMessage(message);
-  }
+  useEffect(() => {
+    async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/users/courses')
+        const {course,message} = response.data;
+         setCourses(course);
+         setMessage(message);
+      } catch (error) {
+         setMessage(error.response?.data?.message)
+      }
+     
+    }
+    return () => {
+      setCourses([]);
+    }
+  }, [])
+  
+ 
 
 
   return (
     <div>
       {courses.map((course)=>{
         <div>
+          {message && <div>
+            {message}
+            {}
+            </div>}
           <div>
             <img src={course.imageLink} alt={course.imageLink} />
           </div>
