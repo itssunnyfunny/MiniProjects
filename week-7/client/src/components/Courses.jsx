@@ -34,7 +34,7 @@ const Courses = () => {
        {message && <div>
           {message}
           </div>}
-      {courses.length > 0 ? (courses.map((course)=>{
+      {courses.length > 0 ? (courses.map((course)=>(
         <div>
        
         <div key={course.courseId} >
@@ -47,7 +47,8 @@ const Courses = () => {
           <div>
           </div>
         </div>
-      })):(
+       ))
+      ):(
         !message && <p> No course is available. </p>
       )}
     </div>
