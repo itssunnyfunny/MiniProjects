@@ -8,19 +8,21 @@ const Courses = () => {
   const [message, setMessage] = useState("")
 
   useEffect(() => {
-    async () => {
+   const getCourses =  async () => {
       try {
         const response = await axios.get('http://localhost:3000/users/courses')
         const {course,message} = response.data;
-         setCourses(course);
-         setMessage(message);
+         setCourses(course || []);
+         setMessage(message || "");
       } catch (error) {
-         setMessage(error.response?.data?.message)
+         setMessage(error.response?.data?.message || "something went wrong")
       }
      
     }
+
+    getCourses()
     return () => {
-      setCourses([]);
+  
     }
   }, [])
   
@@ -29,14 +31,14 @@ const Courses = () => {
 
   return (
     <div>
-      {courses.map((course)=>{
+       {message && <div>
+          {message}
+          </div>}
+      {courses.length > 0 ? (courses.map((course)=>{
         <div>
-          {message && <div>
-            {message}
-            {}
-            </div>}
-          <div>
-            <img src={course.imageLink} alt={course.imageLink} />
+       
+        <div key={course.courseId} >
+            <img src={course.imageLink} alt={`Image of ${course.title}`} />
           </div>
           <h1>{course.title}</h1>
           <h2>
@@ -45,7 +47,9 @@ const Courses = () => {
           <div>
           </div>
         </div>
-      })}
+      })):(
+        !message && <p> No course is available. </p>
+      )}
     </div>
   )
 }
