@@ -52,7 +52,7 @@ const handleSubmit = () => {
   };
 
   const data = {petName, petType, breed, adopterName, email, phone};
-  setFormData((preValues)=> [...preValues, data])
+  setFormData((preValues) => [...preValues, data])
   setShowTable(true);
   setValues({
     petName: "",
@@ -72,7 +72,7 @@ const handleSubmit = () => {
   })
 }
 
-const handleGoBack = setShowTable(!showTable);
+const handleGoBack =()=> setShowTable(!showTable)
 
 
    if (!showTable) {

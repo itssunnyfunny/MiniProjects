@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export class AdopterData extends Component {
   render() {
-    const {FormData, handleGoBack} = this.props;
+    const {formData, handleGoBack} = this.props;
     return (
       <div>
         <table style={{
@@ -30,7 +30,7 @@ export class AdopterData extends Component {
             </tr>
           </thead>
           <tbody>
-            {FormData.map((data, index) => (
+            {formData.map((data, index) => (
               <tr key={index}>
                 <td>{data.petName}</td>
                 <td>{data.petType}</td>
