@@ -71,6 +71,10 @@ const handleSubmit = () => {
     phone: ""
   })
 }
+
+const handleGoBack = setShowTable(!showTable);
+
+
    if (!showTable) {
     return (
       <div className='form'>
@@ -145,7 +149,7 @@ const handleSubmit = () => {
       </div>
     )
    }
-  return <AdopterData></AdopterData>
+  return <AdopterData formData={formData} handleGoBack={handleGoBack}></AdopterData>
   
 }
 
