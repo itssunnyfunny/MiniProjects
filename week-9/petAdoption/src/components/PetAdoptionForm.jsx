@@ -26,11 +26,50 @@ const PetAdoptionForm = () => {
   phone: ""
  })
 const handleChange = (event) =>{
+  const {name, value} = event.target;
+  setValues((preValues)=> ({
+    ...preValues,
+    [name]: value,
+  }));
 
+  let errorsCopy = {...errors};
+  const errorR = validation(name, value, errorsCopy)
+  setErrors(errorR)
 }
 
 const handleSubmit = () => {
+   
+  if (!petName || !petType || !breed || !adopterName || !email || !phone) {
+    alert("Please fill out all fields")
+    return;
+  }
 
+
+  const hasErrors = Object.values(errors).some((val)=>val);
+  if (hasErrors) {
+    alert("Please fill out all the fields")
+    return;
+  };
+
+  const data = {petName, petType, breed, adopterName, email, phone};
+  setFormData((preValues)=> [...preValues, data])
+  setShowTable(true);
+  setValues({
+    petName: "",
+    petType: "Dog",
+    breed: "",
+    adopterName: "",
+    email: "",
+    phone: ""
+  })
+  setErrors({
+    petName: "",
+    petType: "",
+    breed: "",
+    adopterName: "",
+    email: "",
+    phone: ""
+  })
 }
    if (!showTable) {
     return (
